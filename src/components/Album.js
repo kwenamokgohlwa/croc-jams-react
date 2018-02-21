@@ -106,41 +106,51 @@ class Album extends Component {
     return isNaN(time) ? "-:--" : mins + ":" + secs;
   }
 
+  bgStyle(bg) {
+    return {background: 'url(' + bg + ')' };
+  }
+
   render() {
     return(
       <section className="album">
-        <section id="album-info">
-          <img id="album-cover-art" src={this.state.album.albumCover} />
-          <div className="album-details">
-            <h1 id="album-title">{this.state.album.title}</h1>
-            <h2 className="artist">{this.state.album.artist}</h2>
-            <div id="release-info">{this.state.album.releaseInfo}</div>
+        <section id="album-card" className="mdl-card mdl-shadow--4dp">
+          <div className="mdl-card__title mdl-card--expand" style={this.bgStyle(this.state.album.albumCover)} >
+            <h2 className="mdl-card__title-text">{this.state.album.title}</h2>
+          </div>
+          <div className="artist mdl-card__supporting-text">
+            {this.state.album.artist}
+          </div>
+          <div className="album-info mdl-card__supporting-text">
+            {this.state.album.releaseInfo}
+          </div>
+          <div className="album-songs">
+            <table id="song-list" clasName="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+              <colgroup>
+                <col id="song-number-column" />
+                <col id="song-title-column" />
+                <col id="song-duration-column" />
+              </colgroup>
+              <tbody>
+                {
+                  this.state.album.songs.map( (song, index) =>
+                    <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
+                      <td className="song-actions mdl-data-table__cell--non-numeric">
+                        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                          <span className="song-number">{index+1}</span>
+                          <span className="ion-play"></span>
+                          <span className="ion-pause"></span>
+                        </button>
+                      </td>
+                      <td className="mdl-data-table__cell--non-numeric">{song.title}</td>
+                      <td className="mdl-data-table__cell--non-numeric">{this.formatTime(song.duration)}</td>
+                    </tr>
+                  )
+                }
+              </tbody>
+            </table>
           </div>
         </section>
-        <table id="song-list">
-          <colgroup>
-            <col id="song-number-column" />
-            <col id="song-title-column" />
-            <col id="song-duration-column" />
-          </colgroup>
-          <tbody>
-            {
-              this.state.album.songs.map( (song, index) =>
-                <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
-                  <td className="song-actions">
-                    <button>
-                      <span className="song-number">{index+1}</span>
-                      <span className="ion-play"></span>
-                      <span className="ion-pause"></span>
-                    </button>
-                  </td>
-                  <td>{song.title}</td>
-                  <td>{this.formatTime(song.duration)}</td>
-                </tr>
-              )
-            }
-          </tbody>
-        </table>
+
         <PlayerBar
         isPlaying={this.state.isPlaying}
         currentSong={this.state.currentSong}

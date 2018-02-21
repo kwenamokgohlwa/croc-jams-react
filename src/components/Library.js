@@ -8,16 +8,27 @@ class Library extends Component {
     this.state = { albums: albumData }
   }
 
+  bgStyle(bg) {
+    return {background: 'url("' + bg + '") bottom' };
+  }
+
   render() {
     return (
       <section className='library'>
         {
           this.state.albums.map( (album, index) =>
             <Link to={`/album/${album.slug}`} key={index} >
-              <img src={album.albumCover} alt={album.title} />
-              <div>{album.title}</div>
-              <div>{album.artist}</div>
-              <div>{album.songs.length} songs</div>
+              <div className="library-album mdl-card mdl-shadow--4dp">
+                <div className="mdl-card__title mdl-card--expand" style={this.bgStyle(album.albumCover)} >
+                  <h2 className="mdl-card__title-text">{album.title}</h2>
+                </div>
+                <div className="artist mdl-card__supporting-text">
+                  {album.artist}
+                </div>
+                <div className="album-info mdl-card__supporting-text">
+                  {album.songs.length} songs
+                </div>
+              </div>
             </Link>
           )
         }
