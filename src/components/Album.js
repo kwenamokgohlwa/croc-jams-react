@@ -15,7 +15,8 @@ class Album extends Component {
       currentTime: 0,
       duration: album.songs[0].duration,
       volume: 1,
-      isPlaying: false
+      isPlaying: false,
+      hover: false
     };
 
     this.audioElement = document.createElement('audio');
@@ -110,6 +111,17 @@ class Album extends Component {
     return {background: 'url(' + bg + ')' };
   }
 
+  hoverOn() {
+    this.setState({ hover : true });
+  }
+
+  hoverOff() {
+    this.setState({ hover : false });
+  }
+
+  buttonStyle() {
+  }
+
   render() {
     return(
       <section className="album">
@@ -124,7 +136,7 @@ class Album extends Component {
             {this.state.album.releaseInfo}
           </div>
           <div className="album-songs">
-            <table id="song-list" clasName="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <table id="song-list">
               <colgroup>
                 <col id="song-number-column" />
                 <col id="song-title-column" />
@@ -133,16 +145,15 @@ class Album extends Component {
               <tbody>
                 {
                   this.state.album.songs.map( (song, index) =>
-                    <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
+                    <tr className="song" key={index} onMouseEnter={() => this.hoverOn()} onMouseLeave={() => this.hoverOff()} onClick={() => this.handleSongClick(song)} >
                       <td className="song-actions mdl-data-table__cell--non-numeric">
-                        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                          <span className="song-number">{index+1}</span>
-                          <span className="ion-play"></span>
-                          <span className="ion-pause"></span>
+                        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
+                          <span className="song-number" style={{display: this.hover ? "inline" : "none"}}>{index+1}</span>
+                          <span className={this.state.isPlaying ? "ion-pause" : "ion-play"} ></span>
                         </button>
                       </td>
-                      <td className="mdl-data-table__cell--non-numeric">{song.title}</td>
-                      <td className="mdl-data-table__cell--non-numeric">{this.formatTime(song.duration)}</td>
+                      <td>{song.title}</td>
+                      <td>{this.formatTime(song.duration)}</td>
                     </tr>
                   )
                 }
