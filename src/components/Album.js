@@ -16,7 +16,8 @@ class Album extends Component {
       duration: album.songs[0].duration,
       volume: 1,
       isPlaying: false,
-      hover: false
+      hover: false,
+      isPaused: null
     };
 
     this.audioElement = document.createElement('audio');
@@ -26,11 +27,13 @@ class Album extends Component {
   play() {
     this.audioElement.play();
     this.setState({ isPlaying: true });
+    this.setState({ isPaused: false });
   }
 
   pause() {
     this.audioElement.pause();
     this.setState({ isPlaying: false });
+    this.setState({ isPaused: true });
   }
 
   componentDidMount() {
@@ -148,8 +151,8 @@ class Album extends Component {
                     <tr className="song" key={index} onMouseEnter={() => this.hoverOn()} onMouseLeave={() => this.hoverOff()} onClick={() => this.handleSongClick(song)} >
                       <td className="song-actions mdl-data-table__cell--non-numeric">
                         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
-                          <span className="song-number" style={{display: this.state.hover || this.state.isPlaying ? "none" : ""}}>{index+1}</span>
-                          <span className={this.state.isPlaying ? "ion-pause" : "ion-play"} style={{display: this.state.hover || this.state.isPlaying ? "" : "none"}}></span>
+                          <span className="song-number" style={{display: this.state.hover || this.state.isPlaying || this.state.isPaused ? "none" : ""}}>{index+1}</span>
+                          <span className={this.state.isPlaying ? "ion-pause" : "ion-play"} style={{display: this.state.hover || this.state.isPlaying || this.state.isPaused ? "" : "none"}}></span>
                         </button>
                       </td>
                       <td>{song.title}</td>
