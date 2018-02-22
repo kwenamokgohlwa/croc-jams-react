@@ -148,8 +148,8 @@ class Album extends Component {
                     <tr className="song" key={index} onMouseEnter={() => this.hoverOn()} onMouseLeave={() => this.hoverOff()} onClick={() => this.handleSongClick(song)} >
                       <td className="song-actions mdl-data-table__cell--non-numeric">
                         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
-                          <span className="song-number" style={{display: this.hover ? "inline" : "none"}}>{index+1}</span>
-                          <span className={this.state.isPlaying ? "ion-pause" : "ion-play"} ></span>
+                          <span className="song-number" style={{display: this.state.hover || this.state.isPlaying ? "none" : ""}}>{index+1}</span>
+                          <span className={this.state.isPlaying ? "ion-pause" : "ion-play"} style={{display: this.state.hover || this.state.isPlaying ? "" : "none"}}></span>
                         </button>
                       </td>
                       <td>{song.title}</td>
