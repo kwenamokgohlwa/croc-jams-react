@@ -127,19 +127,14 @@ class Album extends Component {
 
   buttonClass(index) {
     if((this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]){
-      return "ion-pause";
+      return "ion-play " + "song-number-" + index+1;
     }else if ((!this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]) {
-      return "ion-play";
+      return "ion-play " + "song-number-" + index+1;
     }else {
-        return "song-number";
+        return "song-number-" + index+1;
       }
   }
 
-//style={{display: this.state.hover || this.state.isPlaying || this.state.isPaused ? "none" : ""}}
-//{this.state.isPlaying ? "ion-pause" : "ion-play"} style={{display: this.state.hover || this.state.isPlaying || this.state.isPaused ? "" : "none"}}
-//                          <span className="song-number" >{index+1}</span>
-//                          <span className={this.buttonClass(song, index)}></span>
-// { this.state.currentSong === song ? <i className="material-icons">{this.buttonClass(song, index)}</i> : <span className="song-number" >{this.buttonClass(song, index)}</span>}
   render() {
     return(
       <section className="album">
@@ -166,8 +161,8 @@ class Album extends Component {
                     <tr className="song" key={index} onMouseEnter={() => this.hoverOn(index)} onMouseLeave={() => this.hoverOff()} onClick={() => this.handleSongClick(song)} >
                       <td className="song-actions mdl-data-table__cell--non-numeric">
                         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
-                          <span className={this.buttonClass(this.state.hoverIndex)} >{index+1}</span>
-                          <span className={this.buttonClass(index)} ></span>
+                          <span className={this.buttonClass(index)} >{index+1}</span>
+                          <span className={this.state.isPlaying ? "ion-play" : "ion-pause"} style={{display: this.state.hover ? "" : "none" }}></span>
                         </button>
                       </td>
                       <td>{song.title}</td>
