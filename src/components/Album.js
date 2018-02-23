@@ -163,6 +163,7 @@ class Album extends Component {
                         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
                           <span  style={{display: this.state.hover ? "none" : "" }}>{index+1}</span>
                           <span className={this.buttonClass(index)} style={{display: this.state.hover ? "" : "none" }}></span>
+                          <span className={isPlaying ? "ion-pause" : "ion-play"} style={{display: index === hoverIndex ? "" : "none" }}></span>
                         </button>
                       </td>
                       <td>{song.title}</td>
