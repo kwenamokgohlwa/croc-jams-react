@@ -127,7 +127,7 @@ class Album extends Component {
 
   buttonClass(index) {
     if((this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]){
-      return "ion-play " + "song-number-" + index+1;
+      return "ion-pause " + "song-number-" + index+1;
     }else if ((!this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]) {
       return "ion-play " + "song-number-" + index+1;
     }else {
@@ -161,8 +161,8 @@ class Album extends Component {
                     <tr className="song" key={index} onMouseEnter={() => this.hoverOn(index)} onMouseLeave={() => this.hoverOff()} onClick={() => this.handleSongClick(song)} >
                       <td className="song-actions mdl-data-table__cell--non-numeric">
                         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
-                          <span className={this.buttonClass(index)} >{index+1}</span>
-                          <span className={this.state.isPlaying ? "ion-play" : "ion-pause"} style={{display: this.state.hover ? "" : "none" }}></span>
+                          <span  style={{display: this.state.hover ? "none" : "" }}>{index+1}</span>
+                          <span className={this.buttonClass(index)} style={{display: this.state.hover ? "" : "none" }}></span>
                         </button>
                       </td>
                       <td>{song.title}</td>
