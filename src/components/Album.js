@@ -16,10 +16,11 @@ class Album extends Component {
       duration: album.songs[0].duration,
       volume: 1,
       isPlaying: false,
-      hoverIndex: -1,
-      hover: false
+      displayHover: album.songs.map(() => false),
+      displaySongNumber: album.songs.map(() => true)
     };
 
+    //this.state.displaySongNumber[0] = false;
     this.audioElement = document.createElement('audio');
     this.audioElement.src = album.songs[0].audioSrc;
   }
@@ -63,6 +64,9 @@ class Album extends Component {
   setSong(song) {
     this.audioElement.src = song.audioSrc;
     this.setState({ currentSong:song });
+    let newDisplay = this.state.album.songs.map(() => true);
+    newDisplay[this.state.album.songs.indexOf(song)] = false;
+    this.setState({ displaySongNumber: newDisplay });
   }
 
   handleSongClick(song) {
@@ -73,7 +77,9 @@ class Album extends Component {
       if (!isSameSong) { this.setSong(song); }
       this.play();
     }
-
+    let newDisplay = this.state.album.songs.map(() => true);
+    newDisplay[this.state.album.songs.indexOf(song)] = false;
+    this.setState({ displaySongNumber: newDisplay });
   }
 
   handlePrevClick() {
@@ -114,24 +120,23 @@ class Album extends Component {
     return {background: 'url(' + bg + ')' };
   }
 
-  hoverOn(index) {
-    this.setState({ hoverIndex : (index) });
-    this.setState({ hover: true });
+  hoverOn(e, index) {
+    const newDisplay = this.state.displayHover.map((disp, indexDisp) =>  indexDisp === index ? true : false )
+    this.setState({ displayHover : newDisplay });
   }
 
   hoverOff() {
-    this.setState({ hoverIndex : -1 });
-    this.setState({ hover: false });
+    const newDisplay = this.state.displayHover.map(() => false);
+    this.setState({ displayHover : newDisplay });
   }
-
 
   buttonClass(index) {
     if((this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]){
-      return "ion-pause " + "song-number-" + index+1;
+      return ("ion-pause " + "song-number-" + index+1);
     }else if ((!this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]) {
-      return "ion-play " + "song-number-" + index+1;
+      return ("ion-play " + "song-number-" + index+1);
     }else {
-        return "song-number-" + index+1;
+        return "song-number-" + (index + 1);
       }
   }
 
@@ -158,12 +163,12 @@ class Album extends Component {
               <tbody>
                 {
                   this.state.album.songs.map( (song, index) =>
-                    <tr className="song" key={index} onMouseEnter={() => this.hoverOn(index)} onMouseLeave={() => this.hoverOff()} onClick={() => this.handleSongClick(song)} >
+                    <tr className="song" key={index} onMouseEnter={(e) => this.hoverOn(e, index)} onMouseLeave={() => this.hoverOff()} onClick={() => this.handleSongClick(song)} >
                       <td className="song-actions mdl-data-table__cell--non-numeric">
                         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
-                          <span  style={{display: this.state.hover ? "none" : "" }}>{index+1}</span>
-                          <span className={this.buttonClass(index)} style={{display: this.state.hover ? "" : "none" }}></span>
-                          <span className={isPlaying ? "ion-pause" : "ion-play"} style={{display: index === hoverIndex ? "" : "none" }}></span>
+                          <span className={this.buttonClass(index)} style={{display: this.state.displayHover[index] || this.state.displaySongNumber[index] ? "none" : "" }}></span>
+                          <span style={{display: this.state.displayHover[index] || !this.state.displaySongNumber[index] ? "none" : "" }}>{index+1}</span>
+                          <span className="ion-play" style={{display: this.state.displayHover[index] ? "" : "none" }}></span>
                         </button>
                       </td>
                       <td>{song.title}</td>

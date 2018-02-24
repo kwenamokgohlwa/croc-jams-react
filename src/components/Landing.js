@@ -14,7 +14,7 @@ const Landing = () => (
           <h2 className="point-title mdl-card__title-text">Choose your music</h2>
         </div>
         <div className="mdl-card__supporting-text">
-          <p className="point-description">The world is full of music; why should you have to listen to music that someone esle chose?</p>
+          <p className="point-description">The world is full of music, why should you have to listen to music that someone esle chose?</p>
         </div>
       </div>
       <div className="point mdl-card mdl-shadow--4dp">

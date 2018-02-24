@@ -14,7 +14,7 @@ class App extends Component {
           <div className="mdl-layout__header-row">
             <span>Bloc Jams</span>
             <div className="mdl-layout-spacer"></div>
-            <img id="logo" src='/assets/images/bloc_jams_logo.png'/>
+            <img id="logo" src='/assets/images/bloc_jams_logo.png' alt="bloc jams logo"/>
           </div>
         </header>
         <div className="mdl-layout__drawer">
