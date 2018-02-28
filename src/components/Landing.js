@@ -4,6 +4,11 @@ const Landing = () => (
   <section className="landing">
     <section className="hero">
       <h1 className="hero-title">Turn the music up</h1>
+      <a href="/library">
+        <button className="hero-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          View Library
+        </button>
+      </a>
     </section>
     <section className="selling-points">
       <div className="point mdl-card mdl-shadow--4dp">

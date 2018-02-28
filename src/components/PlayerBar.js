@@ -19,7 +19,7 @@ class PlayerBar extends Component {
           <div className="current-time">{this.props.formatTime(this.props.currentTime)}</div>
             <input
             type="range"
-            className="seek-bar mdl-slider mdl-js-slider"
+            className="mdl-slider mdl-js-slider seek-bar"
             value={(this.props.currentTime / this.props.duration) || 0}
             max="1"
             min="0"
@@ -29,10 +29,10 @@ class PlayerBar extends Component {
           <div className="total-time">{this.props.formatTime(this.props.duration)}</div>
         </section>
         <section id="volume-control">
-            <i className="material-icons">volume_up</i>  
+            <i className="material-icons">volume_up</i>
             <input
             type="range"
-            className="seek-bar mdl-slider mdl-js-slider"
+            className="mdl-slider mdl-js-slider seek-bar"
             value={this.props.volume}
             max="1"
             min="0"
