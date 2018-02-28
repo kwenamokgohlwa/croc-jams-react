@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import Slider from 'material-ui/Slider';
 
 class PlayerBar extends Component {
+
+
   render() {
     return(
       <section className="player-bar">
@@ -16,30 +19,26 @@ class PlayerBar extends Component {
           </button>
         </section>
         <section id="time-control">
-          <div className="current-time">{this.props.formatTime(this.props.currentTime)}</div>
-            <input
-            type="range"
-            className="mdl-slider mdl-js-slider seek-bar"
-            value={(this.props.currentTime / this.props.duration) || 0}
-            max="1"
-            min="0"
-            step="0.01"
-            onChange={this.props.handleTimeChange}
-            />
-          <div className="total-time">{this.props.formatTime(this.props.duration)}</div>
+          <span className="current-time">{this.props.formatTime(this.props.currentTime)}</span>
+          <span className="total-time">{this.props.formatTime(this.props.duration)}</span>
+            <div className="seek-bar">
+              <Slider
+              value={(this.props.currentTime / this.props.duration) || 0}
+              onChange={this.props.handleTimeChange}
+              />
+            </div>
+
         </section>
         <section id="volume-control">
-            <i className="material-icons">volume_up</i>
-            <input
-            type="range"
-            className="mdl-slider mdl-js-slider seek-bar"
-            value={this.props.volume}
-            max="1"
-            min="0"
-            step="0.01"
-            onChange={this.props.handleVolumeChange}
-            />
-            <i className="material-icons">volume_down</i>
+            <i className="volume-label material-icons">volume_down</i>
+            <i className="volume-label material-icons">volume_up</i>
+            <div className="seek-bar">
+              <Slider
+                value={this.props.volume}
+                onChange={this.props.handleVolumeChange}
+              />
+            </div>
+
         </section>
       </section>
     );

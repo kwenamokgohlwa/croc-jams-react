@@ -5,7 +5,7 @@ import PlayerBar from './PlayerBar'
 class Album extends Component {
   constructor(props) {
     super(props);
-    
+
     const album = albumData.find( album => {
       return album.slug === this.props.match.params.slug
     });
@@ -99,14 +99,14 @@ class Album extends Component {
     this.play(newSong);
   }
 
-  handleTimeChange(e) {
-    const newTime = this.audioElement.duration * e.target.value;
+  handleTimeChange(e, value) {
+    const newTime = this.audioElement.duration * value;
     this.audioElement.currentTime = newTime;
     this.setState({ currentTime: newTime });
   }
 
-  handleVolumeChange(e) {
-    const newVolume = e.target.value;
+  handleVolumeChange(e, value) {
+    const newVolume = value;
     this.audioElement.volume = newVolume;
     this.setState({ volume : newVolume });
   }
@@ -191,8 +191,8 @@ class Album extends Component {
         handleSongClick={() => this.handleSongClick(this.state.currentSong)}
         handlePrevClick={() => this.handlePrevClick()}
         handleNextClick={() => this.handleNextClick()}
-        handleTimeChange={(e) => this.handleTimeChange(e)}
-        handleVolumeChange={(e) => this.handleVolumeChange(e)}
+        handleTimeChange={(e, value) => this.handleTimeChange(e, value)}
+        handleVolumeChange={(e, value) => this.handleVolumeChange(e, value)}
         formatTime={(time) => this.formatTime(time)}
         />
       </section>
