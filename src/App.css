@@ -1,0 +1,181 @@
+/* App */
+
+.App {
+  text-align: center;
+  background: url("/assets/images/blurred_backgrounds/blur_bg_3.jpg") center / cover;
+}
+
+.mdl-layout__drawer, .mdl-layout__header {
+  background: rgb(62, 25, 76);
+  border: none;
+}
+
+.mdl-layout__obfuscator.is-visible{
+    background-color: transparent;
+}
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+  color: white;
+}
+
+#logo {
+  width: 75px;
+  height: 56.25px;
+}
+
+/* Landing */
+
+.hero {
+  background: url("/assets/images/bloc_jams_bg.jpg") center / cover;
+  min-height: 600px;
+  color: white;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 30%;
+  width: 50%;
+  margin: -5% 0 0 -25%;
+}
+
+.hero-button {
+  margin: 400px auto 0px auto;
+}
+
+.material-icons {
+  color: white;
+  font-size: 30px;
+}
+
+.point .material-icons {
+  color: rgb(246, 0, 102);
+  font-size: 60px;
+}
+
+.point {
+  color: white;
+  display: inline-block;
+  margin: 30px 30px 30px 30px;
+  width: 320px;
+  height: 320px;
+  background: rgba(164, 74, 151, 0.3);
+}
+
+.point-title {
+  color: white;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.point-icon {
+  margin-top: 25px;
+}
+
+.point-description {
+  color: rgba(255,255,255,0.5);;
+  text-align: center;
+}
+
+/* Library */
+
+.library-album {
+  color: white;
+  display: inline-block;
+  margin: 20px 10px;
+  background: rgba(164, 74, 151, 0.3);
+}
+
+.library-album > .mdl-card__title {
+  color: white;
+  height: 200px;
+}
+
+@media screen and (min-width: 560px) {
+  .library-album.mdl-card {
+    width: 560px;
+  }
+
+  .library-album {
+    width: 500px;
+    height: 700px;
+  }
+
+  .library-album > .mdl-card__title {
+    color: white;
+    height: 560px;
+  }
+}
+
+.album-info, .artist {
+  color: rgba(43, 14, 55, 0.7);
+  text-align: center;
+  font-size: 18px;
+}
+
+.artist {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 10px 10px 0px 10px;
+  font-size: 20px;
+}
+
+.album-info {
+  margin: 0px 10px 18px 10px;
+}
+
+/* Album */
+
+#album-card {
+  color: white;
+  margin: 50px auto;
+  height: 560px;
+  background: rgba(164, 74, 151, 0.3);
+}
+
+@media screen and (min-width: 560px) {
+  #album-card.mdl-card {
+    width: 560px;
+    height: 660px;
+  }
+}
+
+#album-card > .mdl-card__title {
+  color: white;
+}
+
+.album-songs {
+  background: rgba(62, 25, 76, 0.2);
+}
+
+#song-list {
+  margin: 10px auto;
+}
+
+/* Player Bar */
+
+span.total-time, span.current-time {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 20px 20px 20px 20px;
+}
+
+#time-control {
+  margin-top: 20px;
+}
+
+#volume-control {
+  margin-bottom: 20px;
+}
+
+#volume-control i {
+  margin: 0px 20px;
+}
+
+div.seek-bar {
+  margin: 0 auto;
+  width: 350px;
+}
