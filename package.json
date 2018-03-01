@@ -2,7 +2,7 @@
   "name": "bloc-jams-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kwenamokgohlwa.github.io/bloc-jams-react",
+  "homepage": "https://kwenamokgohlwa.github.io/bloc-jams-react/",
   "dependencies": {
     "gh-pages": "^1.1.0",
     "material-ui": "^0.20.0",
