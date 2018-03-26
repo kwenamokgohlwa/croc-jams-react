@@ -131,16 +131,6 @@ class Album extends Component {
     this.setState({ displayHover : newDisplay });
   }
 
-  buttonClass(index) {
-    if((this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]){
-      return ("ion-pause " + "song-number-" + index+1);
-    }else if ((!this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]) {
-      return ("ion-play " + "song-number-" + index+1);
-    }else {
-        return "song-number-" + (index + 1);
-      }
-  }
-
   render() {
     return(
       <section className="album">
@@ -167,9 +157,17 @@ class Album extends Component {
                     <tr className="song" key={index} onMouseEnter={(e) => this.hoverOn(e, index)} onMouseLeave={() => this.hoverOff()} onClick={() => this.handleSongClick(song)} >
                       <td className="song-actions mdl-data-table__cell--non-numeric">
                         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >
-                          <span className={this.buttonClass(index)} style={{display: this.state.displayHover[index] || this.state.displaySongNumber[index] ? "none" : "" }}></span>
+                          <span style={{display: this.state.displayHover[index] || this.state.displaySongNumber[index] ? "none" : "" }}>
+                            {
+                              ((this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]) ?
+                              <i className="material-icons md-18">play_arrow</i> :
+                              <i className="material-icons md-18">pause</i>
+                            }
+                          </span>
                           <span style={{display: this.state.displayHover[index] || !this.state.displaySongNumber[index] ? "none" : "" }}>{index+1}</span>
-                          <span className="ion-play" style={{display: this.state.displayHover[index] ? "" : "none" }}></span>
+                          <span style={{display: this.state.displayHover[index] ? "" : "none" }}>
+                            <i className="material-icons md-18">play_arrow</i>
+                          </span>
                         </button>
                       </td>
                       <td>{song.title}</td>

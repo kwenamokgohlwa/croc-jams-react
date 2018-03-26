@@ -155,6 +155,8 @@
   margin: 10px auto;
 }
 
+.material-icons.md-18 { font-size: 18px; }
+
 /* Player Bar */
 
 span.total-time, span.current-time {
