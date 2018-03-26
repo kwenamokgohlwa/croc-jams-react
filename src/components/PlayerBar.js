@@ -14,8 +14,8 @@ class PlayerBar extends Component {
           <button id="play-pause" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={this.props.handleSongClick} >
              {
                this.props.isPlaying ?
-               <i className="material-icons md-18">play_arrow</i> :
-               <i className="material-icons md-18">pause</i>
+               <i className="material-icons md-18">pause</i> :
+               <i className="material-icons md-18">play_arrow</i>
              }
           </button>
           <button id="next" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={this.props.handleNextClick}>

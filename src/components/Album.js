@@ -160,8 +160,8 @@ class Album extends Component {
                           <span style={{display: this.state.displayHover[index] || this.state.displaySongNumber[index] ? "none" : "" }}>
                             {
                               ((this.state.isPlaying) && this.state.currentSong === this.state.album.songs[index]) ?
-                              <i className="material-icons md-18">play_arrow</i> :
-                              <i className="material-icons md-18">pause</i>
+                              <i className="material-icons md-18">pause</i> :
+                              <i className="material-icons md-18">play_arrow</i>
                             }
                           </span>
                           <span style={{display: this.state.displayHover[index] || !this.state.displaySongNumber[index] ? "none" : "" }}>{index+1}</span>
