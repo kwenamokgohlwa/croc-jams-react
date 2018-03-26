@@ -181,3 +181,7 @@ div.seek-bar {
   margin: 0 auto;
   width: 350px;
 }
+
+#play-pause {
+  text-align: center;
+}
